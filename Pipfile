@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 feedparser = "*"
 urllib3 = "*"
-xmltodict = "*"
 
 [dev-packages]
 

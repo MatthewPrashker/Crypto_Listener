@@ -1,19 +1,15 @@
-import emailForm from './components/emailForm';
+import React from 'react';
 import './App.css';
-import ReactDOM from 'react';
 
-function App() {
-  
-  
-  return (
+
+function App(props) {
+    return (
       <div>
         <h1>
-          <emailForm />
+          Welcome to Crypto-Listener
         </h1>
       </div>
     );
-
-    
 
 }
 
