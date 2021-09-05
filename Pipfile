@@ -4,9 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-feedparser = "*"
-urllib3 = "*"
 requests = "*"
+flask = "*"
 
 [dev-packages]
 
