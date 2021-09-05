@@ -1,4 +1,4 @@
-# Arxiv_Listener
+# Crypto-Listener
 An application which allows users to enter thresholds for prices of various crypto-currencies, and alerts the user when 
 the thresholds are met. Front-end is created in react, and backend is built using the Flask framework.
 
