@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import Currency_List from './Currency_List.js';
+
 
 
 class App extends React.Component {
@@ -19,11 +21,20 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
-    
-      this.setState( {
-        trackedCurrencies : this.state.trackedCurrencies.slice().concat([this.state.value + " "]),
-        value: '',
-      });
+
+      
+      
+      if(is_valid_currency(this.state.value)) {
+        this.setState( {
+          trackedCurrencies : this.state.trackedCurrencies.slice().concat([this.state.value]),
+          value: '',
+        });
+      } else{
+        this.setState( {
+          value: '',
+        });
+        alert('Please enter a valid crypto-currency');
+      }  
 
       e.preventDefault();
     
@@ -38,10 +49,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        
         <h1>
           Welcome to Crypto-Listener
         </h1>
-        <div>
+        
         <form onSubmit = {this.handleSubmit}>
             <label>
                 Currency
@@ -49,18 +61,20 @@ class App extends React.Component {
             </label>
             <input type='submit' value='Submit' />
         </form>
-        </div>
+        
         <div>
-          {"Tracked Currencies:"}
-          <div>{this.state.trackedCurrencies}</div>
-          {"Number of tracked currencies:"}
-          <div>{this.state.trackedCurrencies.length}</div>
+          <Currency_List list={this.state.trackedCurrencies}/>
         </div>
+      
       </div>
     );
   }
 
 }
 
+//add condition to check if this.state.value is a valid crypto-currency
+function is_valid_currency(currency) {
+  return true;
+}
 
 export default App;
