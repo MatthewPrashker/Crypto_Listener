@@ -9,6 +9,10 @@ class Currency_List extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        //TODO API Request here
+    }
+
 
     render() {
 
@@ -25,7 +29,16 @@ class Currency_List extends React.Component {
                     {number_display}
                 </div>
                 <div>
-                    {this.props.list}
+                    <ul>
+                        {this.props.list.map( currency => (
+                            <li key = {currency}>
+                                {currency}
+                                <button onClick = {this.props.untrack}>
+                                    Untrack Currency
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         );

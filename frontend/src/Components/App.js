@@ -17,13 +17,22 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.unTrack = this.unTrack.bind(this)
 
   }
 
-  handleSubmit(e) {
+  unTrack(currency) {
+    alert("Untracking ".concat(currency));
+  }
+  
+  handleChange(event) {
+    this.setState({
+      value : event.target.value,
+    });
+  }
 
-      
-      
+  handleSubmit(event) {
+
       if(is_valid_currency(this.state.value)) {
         this.setState( {
           trackedCurrencies : this.state.trackedCurrencies.slice().concat([this.state.value]),
@@ -36,15 +45,10 @@ class App extends React.Component {
         alert('Please enter a valid crypto-currency');
       }  
 
-      e.preventDefault();
+      event.preventDefault();
     
   }
 
-  handleChange(e) {
-    this.setState({
-      value : e.target.value,
-    });
-  }
 
   render() {
     return (
@@ -63,7 +67,10 @@ class App extends React.Component {
         </form>
         
         <div>
-          <Currency_List list={this.state.trackedCurrencies}/>
+          <Currency_List 
+            list={this.state.trackedCurrencies}
+            untrack = {this.unTrack}
+          />
         </div>
       
       </div>
