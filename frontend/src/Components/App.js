@@ -22,7 +22,21 @@ class App extends React.Component {
   }
 
   unTrack(currency) {
-    alert("Untracking ".concat(currency));
+    
+    let index = -1;
+    for(let i = 0; i < this.state.trackedCurrencies.length; i++) {
+      if(this.state.trackedCurrencies[i] === currency) {
+        index = i
+      }
+    }
+
+    const first_part = this.state.trackedCurrencies.slice(0, index);
+    const second_part = this.state.trackedCurrencies.slice(index + 1)
+
+    this.setState({
+      trackedCurrencies : first_part.concat(second_part),
+    });
+    alert(currency.concat(" has been untracked"));
   }
   
   handleChange(event) {
@@ -33,20 +47,35 @@ class App extends React.Component {
 
   handleSubmit(event) {
 
+      event.preventDefault();
+
       if(is_valid_currency(this.state.value)) {
-        this.setState( {
-          trackedCurrencies : this.state.trackedCurrencies.slice().concat([this.state.value]),
-          value: '',
-        });
-      } else{
+
+        let alreadyTracked = false;
+
+        for(let i = 0; i < this.state.trackedCurrencies.length; i++) {
+          if(this.state.trackedCurrencies[i] === this.state.value) {
+            alreadyTracked = true;
+          }
+        }
+        
+        if(!alreadyTracked) {
+            this.setState( {
+              trackedCurrencies : this.state.trackedCurrencies.slice().concat([this.state.value]),
+              value: '',
+            });
+        } else {
+            alert(this.state.value.concat(' is already being tracked'));
+            this.setState ( {
+              value: '',
+            });
+        }
+      } else {
         this.setState( {
           value: '',
         });
         alert('Please enter a valid crypto-currency');
       }  
-
-      event.preventDefault();
-    
   }
 
 

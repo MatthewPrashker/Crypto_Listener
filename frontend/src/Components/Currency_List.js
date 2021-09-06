@@ -16,10 +16,9 @@ class Currency_List extends React.Component {
 
     render() {
 
-        const display = 'hello';
         const number_display = "The number of tracked currencies is ".concat(this.props.list.length);
         
-
+            
         return (
             <div>
                 <h1>
@@ -33,7 +32,7 @@ class Currency_List extends React.Component {
                         {this.props.list.map( currency => (
                             <li key = {currency}>
                                 {currency}
-                                <button onClick = {this.props.untrack}>
+                                <button  onClick = {() => this.props.untrack(currency)}>
                                     Untrack Currency
                                 </button>
                             </li>
